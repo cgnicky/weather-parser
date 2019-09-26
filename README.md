@@ -1,2 +1,2 @@
 # weather-parser
-Parse XML from government weather source into CSV
+Parse OpenData Weather XML (stream URL) into CSV
