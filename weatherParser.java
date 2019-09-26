@@ -43,9 +43,10 @@ public class weatherParser {
 
     public static void main(String[] args) throws IOException, DocumentException {
         Properties systemSettings = System.getProperties();
-        systemSettings.put("proxySet", "true");
-        systemSettings.put("http.proxyHost", "172.16.7.195");
-        systemSettings.put("http.proxyPort", "8080");
+        //For proxy internet uses only
+        //systemSettings.put("proxySet", "true");
+        //systemSettings.put("http.proxyHost", "172.16.7.195");
+        //systemSettings.put("http.proxyPort", "8080");
         URLConnection urlConn;
         loadXMLURL(urlList);
         System.out.println("Start to retreive data from url...");
@@ -73,7 +74,7 @@ public class weatherParser {
     }
 
     private static void loadXMLURL (HashMap<String,String> mapVar) throws IOException {
-        BufferedReader xmlURL = new BufferedReader(new FileReader("/home/mipadm/Opendata/weatherParser/xmlURL.txt"));
+        BufferedReader xmlURL = new BufferedReader(new FileReader("xmlURL.txt"));
         String line;
         while ((line = xmlURL.readLine()) != null) {
             String parts[] = line.split(",");
@@ -94,7 +95,7 @@ public class weatherParser {
     }
 
     private static void loadZipCode (HashMap<String, String> mapVar) throws IOException {
-        BufferedReader zipCode = new BufferedReader(new FileReader("/home/mipadm/Opendata/weatherParser/zipcode_mapping.txt"));
+        BufferedReader zipCode = new BufferedReader(new FileReader("zipcode_mapping.txt"));
         String line;
         while ((line = zipCode.readLine()) != null) {
             String parts[] = line.split(",");
@@ -104,7 +105,7 @@ public class weatherParser {
     }
 
     private static void loadZipCodeHeader (HashMap<String, String> mapVar) throws IOException {
-        BufferedReader zipCodeHead = new BufferedReader(new FileReader("/home/mipadm/Opendata/weatherParser/zipcode_header.txt"));
+        BufferedReader zipCodeHead = new BufferedReader(new FileReader("zipcode_header.txt"));
         String line;
         while ((line = zipCodeHead.readLine()) != null) {
             String parts[] = line.split(",");
@@ -219,7 +220,7 @@ public class weatherParser {
     private static void writeToCSV () throws IOException {
         Date date = new Date();
         Format formatter = new SimpleDateFormat("YYYY-MM-dd");
-        BufferedWriter file = new BufferedWriter(new FileWriter("/backup/reference/download/weather_" + formatter.format(date) + ".csv"));
+        BufferedWriter file = new BufferedWriter(new FileWriter("weather_" + formatter.format(date) + ".csv"));
         //Writing PoP data into CSV-formatted file
         //file.append("zipCode,districtName,startTime,endTime,PoP,Temp" + '\n');
         for (int j=0; j < startTimeList.size(); j++) {
