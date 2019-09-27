@@ -74,7 +74,7 @@ public class weatherParser {
     }
 
     private static void loadXMLURL (HashMap<String,String> mapVar) throws IOException {
-        BufferedReader xmlURL = new BufferedReader(new FileReader("xmlURL.txt"));
+        BufferedReader xmlURL = new BufferedReader(new FileReader("sample_url.txt"));
         String line;
         while ((line = xmlURL.readLine()) != null) {
             String parts[] = line.split(",");
